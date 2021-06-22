@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="hello world" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane id="hello world" prefHeight="377.0" prefWidth="822.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <HBox layoutX="19.0">
          <children>
@@ -27,7 +30,18 @@
                   <Label fx:id="pizzaOrderLabel" alignment="TOP_LEFT" prefHeight="110.0" prefWidth="169.0" text="Label" />
                </children>
             </VBox>
-            <VBox prefHeight="250.0" prefWidth="234.0" spacing="10.0">
+            <VBox prefHeight="160.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Label text="Choose a course!">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="comboBox" onAction="#courseSelected" prefHeight="26.0" prefWidth="180.0" promptText="Choose or enter a course" />
+                  <Label fx:id="comboBoxLabel" text="Label" />
+               </children>
+            </VBox>
+            <VBox spacing="10.0">
                <children>
                   <Label prefHeight="27.0" prefWidth="247.0" text="Choose your favorite fruit!">
                      <font>
@@ -39,7 +53,24 @@
                   <Label fx:id="choiceBoxLabel" text="Label" />
                </children>
             </VBox>
+            <VBox prefHeight="358.0" prefWidth="176.0" spacing="10.0">
+               <children>
+                  <Label text="Choose a language!">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <RadioButton fx:id="jsRadio" mnemonicParsing="false" onAction="#radioButtonSelected" text="JavaScript" />
+                  <RadioButton fx:id="cppRadio" mnemonicParsing="false" onAction="#radioButtonSelected" text="C++" />
+                  <RadioButton fx:id="sasRadio" mnemonicParsing="false" onAction="#radioButtonSelected" text="SAS" />
+                  <RadioButton fx:id="pyRadio" mnemonicParsing="false" onAction="#radioButtonSelected" text="Python" />
+                  <Label fx:id="langLabel" text="Label" />
+               </children>
+            </VBox>
          </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
       </HBox>
    </children>
 </AnchorPane>
