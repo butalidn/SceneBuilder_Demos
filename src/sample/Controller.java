@@ -45,7 +45,7 @@ public class Controller implements Initializable {
     }
 
     public void radioButtonSelected() {
-        langLabel.setText("You selected: \n" + ((RadioButton) this.langToggle.getSelectedToggle()).getText());
+        langLabel.setText("You selected: " + ((RadioButton) this.langToggle.getSelectedToggle()).getText());
     }
 
     public void orderButtonClicked(ActionEvent actionEvent) {
