@@ -47,5 +47,6 @@ public class Controller implements Initializable {
 
     public void choiceBoxButtonPushed(ActionEvent actionEvent) {
         choiceBoxLabel.setText("My favorite fruit is: " + choiceBox.getValue().toString());
+        System.out.println("Choice box clicked!");
     }
 }
