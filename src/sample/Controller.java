@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -24,6 +25,9 @@ public class Controller implements Initializable {
     public RadioButton pyRadio;
     public Label langLabel;
     public ToggleGroup langToggle;
+    public ListView listView;
+    public Button gearButton;
+    public TextArea textArea;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -42,6 +46,9 @@ public class Controller implements Initializable {
         this.pyRadio.setToggleGroup(langToggle);
         this.sasRadio.setToggleGroup(langToggle);
         this.jsRadio.setToggleGroup(langToggle);
+
+        listView.getItems().addAll("Golf Balls", "Wedges", "Irons", "Tees", "Drivers");
+        listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
     public void radioButtonSelected() {
@@ -71,5 +78,15 @@ public class Controller implements Initializable {
 
     public void courseSelected(ActionEvent actionEvent) {
         comboBoxLabel.setText("Course selected: \n" + comboBox.getValue().toString());
+    }
+
+    public void golfButton(ActionEvent actionEvent) {
+        String textAreaString = "";
+        ObservableList listOfItems = listView.getSelectionModel().getSelectedItems();
+
+        for(Object item: listOfItems) {
+            textAreaString += (item.toString() + "\n");
+        }
+        textArea.setText(textAreaString);
     }
 }
