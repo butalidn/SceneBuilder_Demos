@@ -2,9 +2,16 @@ package sample;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.Parent;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -28,6 +35,7 @@ public class Controller implements Initializable {
     public ListView listView;
     public Button gearButton;
     public TextArea textArea;
+    public Button tableViewButton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -88,5 +96,14 @@ public class Controller implements Initializable {
             textAreaString += (item.toString() + "\n");
         }
         textArea.setText(textAreaString);
+    }
+
+    public void goToTableVIew(ActionEvent actionEvent) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("TableView.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+
+        Stage window = (Stage) (((Node)actionEvent.getSource()).getScene().getWindow());
+        window.setScene(tableViewScene);
+        window.show();
     }
 }
