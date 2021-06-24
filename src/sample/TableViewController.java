@@ -10,8 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
@@ -23,6 +22,11 @@ import java.time.Month;
 import java.util.ResourceBundle;
 
 public class TableViewController implements Initializable {
+    @FXML private Button addPersonButton;
+    @FXML private Button deletePersonButton;
+    @FXML private TextField firstNameTextField;
+    @FXML private TextField lastNameTextField;
+    @FXML private DatePicker birthdayPicker;
     @FXML private TableColumn<Person, String> firstNameCol;
     @FXML private TableColumn<Person, String> lastNameCol;
     @FXML private TableColumn<Person, LocalDate> birthdayCol;
@@ -47,6 +51,7 @@ public class TableViewController implements Initializable {
         tableViewObj.setEditable(true);
         firstNameCol.setCellFactory(TextFieldTableCell.forTableColumn());
         lastNameCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        tableViewObj.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
     public ObservableList<Person> getPeople(){
@@ -63,8 +68,23 @@ public class TableViewController implements Initializable {
         selectedPerson.setFirstName(editEvent.getNewValue().toString());
     }
 
-    public void changeLastName(TableColumn.CellEditEvent editEvent) {
+    public void changeLastName(TableColumn.CellEditEvent<Person, String> personStringCellEditEvent) {
         Person selectedPerson = tableViewObj.getSelectionModel().getSelectedItem();
-        selectedPerson.setLastName(editEvent.getNewValue().toString());
+        selectedPerson.setLastName(personStringCellEditEvent.getNewValue().toString());
+    }
+
+    public void addPersonClick(ActionEvent actionEvent) {
+        Person newPerson = new Person(firstNameTextField.getText(), lastNameTextField.getText(), birthdayPicker.getValue());
+        tableViewObj.getItems().add(newPerson);
+    }
+
+    public void deletePersonClick(ActionEvent actionEvent) {
+        ObservableList<Person> selectedRows, allPeople;
+        allPeople = tableViewObj.getItems();
+
+        selectedRows = tableViewObj.getSelectionModel().getSelectedItems();
+
+        allPeople.removeAll(selectedRows);
+
     }
 }
